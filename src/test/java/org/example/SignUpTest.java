@@ -1,6 +1,5 @@
 package org.example;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.example.page.LandingPage;
 import org.example.page.SignUpPage;
 import org.testng.Assert;
@@ -11,7 +10,6 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 
 public class SignUpTest extends TestBase {
-    private AndroidDriver driver;
 
     @BeforeClass
     public void setupClass() throws MalformedURLException {
