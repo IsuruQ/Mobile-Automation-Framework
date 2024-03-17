@@ -3,6 +3,7 @@ package org.example.page;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -31,5 +32,23 @@ public class SwipePage {
         }
 
     }
+
+    public WebElement swipeUp() {
+        RemoteWebElement swipeScreen = (RemoteWebElement) driver.findElement(AppiumBy.accessibilityId("Swipe-screen"));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        WebElement webDriverIOLogo = null;
+        while (webDriverIOLogo == null || !webDriverIOLogo.isDisplayed()) {
+            jsExecutor.executeScript("gesture: swipe", ImmutableMap.of("elementId", swipeScreen.getId(),
+                    "percentage", 100,
+                    "direction", "up"));
+            try {
+                webDriverIOLogo = driver.findElement(AppiumBy.accessibilityId("WebdriverIO logo"));
+            } catch (NoSuchElementException e) {
+                // Logo not found yet, continue swiping
+            }
+        }
+        return webDriverIOLogo;
+    }
+
 
 }
