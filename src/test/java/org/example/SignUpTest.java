@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Description;
 import org.example.page.LandingPage;
 import org.example.page.SignUpPage;
 import org.testng.Assert;
@@ -22,6 +23,7 @@ public class SignUpTest extends TestBase {
     }
 
     @Test
+    @Description("This test attempts to SignUp to the app")
     public void testSignUp() {
         final var signUpPage = new SignUpPage(this.driver);
         final var landingpage = new LandingPage(this.driver);
